@@ -1,0 +1,4 @@
+const menu=document.querySelector('.menu'),nav=document.querySelector('#nav');
+if(menu&&nav){menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));}
+const modal=document.querySelector('.modal');
+if(modal){const image=modal.querySelector('img');document.querySelectorAll('.shot img').forEach(img=>img.addEventListener('click',()=>{image.src=img.src;image.alt=img.alt;modal.classList.add('open')}));const close=()=>{modal.classList.remove('open');image.src=''};modal.querySelector('.close').addEventListener('click',close);modal.addEventListener('click',e=>{if(e.target===modal)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});}
