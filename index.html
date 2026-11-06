@@ -1,234 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Project Iceberg OS</title>
-<meta name="description" content="Project Iceberg OS: a hobby operating system with a graphical desktop, its own web browser, an app store, updates and TLS 1.3.">
-<style>
-  :root {
-    --bg: #0a1830;
-    --bg2: #12294a;
-    --card: #14305a;
-    --ink: #eaf3fc;
-    --muted: #a9c4e0;
-    --accent: #6cc3f5;
-    --accent-ink: #06203a;
-    --line: #2a4a76;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
-    color: var(--ink);
-    background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%) fixed;
-  }
-  a { color: var(--accent); }
-  header.top {
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-    gap: 12px; padding: 16px 24px; max-width: 1000px; margin: 0 auto;
-  }
-  .brand { font-weight: 700; letter-spacing: .3px; display: flex; align-items: center; gap: 10px; }
-  .brand svg { width: 26px; height: 26px; }
-  nav a { margin-left: 18px; text-decoration: none; color: var(--muted); font-size: .95rem; }
-  nav a:hover { color: var(--ink); }
-  main { max-width: 1000px; margin: 0 auto; padding: 0 24px 60px; }
-  .hero { text-align: center; padding: 48px 0 32px; }
-  .hero img.banner { max-width: 100%; width: 460px; border-radius: 10px; border: 1px solid var(--line); }
-  h1 { font-size: clamp(2rem, 6vw, 3.2rem); margin: 20px 0 8px; line-height: 1.15; }
-  .tag { color: var(--muted); font-size: 1.15rem; max-width: 640px; margin: 0 auto 26px; }
-  .btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-  .btn {
-    display: inline-block; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600;
-    border: 1px solid var(--accent); color: var(--accent);
-  }
-  .btn.primary { background: var(--accent); color: var(--accent-ink); }
-  .btn:hover { filter: brightness(1.1); }
-  .badge { display: inline-block; margin-top: 18px; padding: 4px 12px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: .85rem; }
-  section { padding: 36px 0 8px; }
-  h2 { font-size: 1.7rem; margin: 0 0 14px; }
-  h2::after { content: ""; display: block; width: 48px; height: 3px; background: var(--accent); margin-top: 8px; border-radius: 2px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
-  .card h3 { margin: 0 0 8px; font-size: 1.1rem; }
-  .card ul { margin: 0; padding-left: 18px; color: var(--muted); }
-  .card p { margin: 0; color: var(--muted); }
-  figure { margin: 0; }
-  figure img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block; }
-  figcaption { color: var(--muted); font-size: .9rem; margin-top: 6px; text-align: center; }
-  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-  th, td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { width: 32%; color: var(--accent); font-weight: 600; }
-  td { color: var(--ink); }
-  tr:last-child th, tr:last-child td { border-bottom: 0; }
-  .scroll { overflow-x: auto; }
-  .note { color: var(--muted); font-size: .92rem; margin-top: 10px; }
-  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-  code { background: rgba(255,255,255,.08); padding: 1px 6px; border-radius: 4px; }
-  ol.steps { padding-left: 22px; }
-  ol.steps li { margin-bottom: 8px; }
-  footer { text-align: center; color: var(--muted); padding: 30px 24px 40px; border-top: 1px solid var(--line); font-size: .92rem; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08172b">
+  <meta name="description" content="Project Iceberg OS — a hobby operating system with a graphical desktop, browser, app store and built-in updates.">
+  <title>Project Iceberg OS — A little OS with big ideas</title>
+  <link rel="icon" type="image/png" href="assets/yo.png">
+  <style>
+    :root{color-scheme:dark;--bg:#071426;--panel:#0e2340;--panel2:#132e50;--line:#25476b;--text:#edf6ff;--muted:#a8c1db;--ice:#bfe5ff;--blue:#69c6f5;--max:1160px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{margin:0;background:radial-gradient(ellipse at 75% 15%,#16385b 0,transparent 34%),linear-gradient(180deg,#071426,#0b1d34 55%,#102d4d);color:var(--text);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:var(--ice)}a:hover{color:#fff}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:10;background:#071426df;backdrop-filter:blur(14px);border-bottom:1px solid #294766}
+    header{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text);font-weight:800;letter-spacing:.2px}.brand img{width:34px;height:34px;object-fit:contain}
+    nav{display:flex;align-items:center;gap:23px}nav a{text-decoration:none;color:var(--muted);font-size:.93rem}nav a:hover{color:white}
+    .menu{display:none;border:1px solid var(--line);background:var(--panel);color:white;border-radius:9px;padding:8px 12px;font:inherit}
+    .hero{padding:86px 0 70px;display:grid;grid-template-columns:1.03fr .97fr;gap:48px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--ice);font:700 .78rem ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase}
+    .dot{width:8px;height:8px;border-radius:50%;background:#7ee0b1;box-shadow:0 0 14px #7ee0b1}
+    h1{font-size:clamp(2.8rem,6vw,5.3rem);line-height:1.02;letter-spacing:-.055em;margin:18px 0 20px}
+    h1 span{color:var(--ice)}.lead{font-size:1.14rem;color:var(--muted);max-width:610px;margin:0 0 28px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 18px;border-radius:9px;border:1px solid #4f86b1;color:var(--ice);text-decoration:none;font-weight:700;transition:.18s ease}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.12)}.btn.primary{background:linear-gradient(135deg,#c9edff,#77c9f3);color:#08213a;border-color:#c5eaff}
+    .version{margin-top:22px;color:var(--muted);font: .83rem ui-monospace,monospace}
+    .preview{position:relative;padding:12px;border:1px solid #386087;border-radius:17px;background:linear-gradient(145deg,#183a5e,#0b1d33);box-shadow:0 30px 80px #0008}
+    .preview:before{content:"";position:absolute;inset:12px;border-radius:10px;background:linear-gradient(180deg,#fff1,transparent 45%);pointer-events:none}
+    .preview img{display:block;width:100%;height:auto;border-radius:9px;border:1px solid #456b8e}
+    .preview-label{position:absolute;left:28px;bottom:25px;padding:7px 11px;border-radius:7px;background:#071426d9;border:1px solid #52799c;font: .75rem ui-monospace,monospace}
+    section{padding:64px 0}.section-head{max-width:700px;margin-bottom:28px}.kicker{color:var(--blue);font:700 .75rem ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}
+    h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em;line-height:1.1;margin:9px 0 12px}.section-head p{color:var(--muted);margin:0}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:linear-gradient(145deg,#132d4b,#0d2039);border:1px solid var(--line);border-radius:13px;padding:22px;min-height:190px}
+    .card .icon{font-size:1.5rem}.card h3{margin:12px 0 7px;font-size:1.08rem}.card p,.card li{color:var(--muted);font-size:.94rem}.card p{margin:0}.card ul{padding-left:19px;margin:8px 0 0}
+    .screens{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.shot{margin:0;overflow:hidden;border:1px solid var(--line);border-radius:13px;background:#0b1c32;cursor:zoom-in}.shot img{display:block;width:100%;height:auto;transition:transform .3s}.shot:hover img{transform:scale(1.025)}figcaption{padding:12px 15px;color:var(--muted);font-size:.9rem}
+    .specs{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#0c2039}.spec{display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--line)}.spec:last-child{border:0}.spec strong{padding:13px 17px;color:var(--ice);font-weight:650}.spec span{padding:13px 17px;color:var(--muted)}
+    .steps{counter-reset:step;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{counter-increment:step;background:#102744;border:1px solid var(--line);border-radius:12px;padding:19px}.step:before{content:"0" counter(step);display:block;color:var(--blue);font:700 1rem ui-monospace,monospace;margin-bottom:10px}.step p{margin:0;color:var(--muted)}
+    .community{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:30px;background:linear-gradient(120deg,#163b5e,#102744);border:1px solid #37618a;border-radius:15px}.community h2{font-size:2rem;margin:0 0 8px}.community p{color:var(--muted);margin:0;max-width:650px}
+    footer{margin-top:45px;border-top:1px solid var(--line);padding:27px 0 38px;color:var(--muted);font-size:.9rem}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footlinks{display:flex;gap:18px;flex-wrap:wrap}
+    .modal{position:fixed;inset:0;z-index:30;background:#020914ed;display:none;align-items:center;justify-content:center;padding:25px}.modal.open{display:flex}.modal img{max-width:min(1100px,96vw);max-height:90vh;border:1px solid #6083a5;border-radius:10px}.close{position:absolute;top:18px;right:22px;border:1px solid #7795b2;border-radius:50%;width:42px;height:42px;background:#102744;color:white;font-size:1.4rem;cursor:pointer}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:60px}.preview{max-width:680px}.features{grid-template-columns:repeat(2,1fr)}nav{gap:13px}}
+    @media(max-width:650px){.wrap{width:min(100% - 30px,var(--max))}header{min-height:64px}.menu{display:block}nav{display:none;position:absolute;top:64px;left:0;right:0;padding:14px 20px 18px;background:#071426f7;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}nav.open{display:flex}nav a{padding:5px 0}.hero{padding:48px 0 42px;gap:30px}.features,.screens,.steps{grid-template-columns:1fr}section{padding:46px 0}.spec{grid-template-columns:1fr}.spec strong{padding-bottom:0}.spec span{padding-top:4px}.community{align-items:flex-start;flex-direction:column}.actions .btn{flex:1 1 100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
 </head>
 <body>
-
-<header class="top">
-  <div class="brand">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 22,20 2,20" fill="#c7e4fa"/><polygon points="12,2 17,11 7,11" fill="#ffffff"/></svg>
-    Project Iceberg OS
-  </div>
-  <nav>
-    <a href="#features">Features</a>
-    <a href="#screens">Screenshots</a>
-    <a href="#requirements">Requirements</a>
-    <a href="#start">Get started</a>
-    <a href="#community">Community</a>
-    <a href="#credits">Credits</a>
-  </nav>
-</header>
-
-<main>
-
-  <div class="hero">
-    <h1>Project Iceberg OS</h1>
-    <p class="tag">A hobby operating system with a graphical desktop, its own web browser, an app store, a built-in update system and TLS 1.3, built from scratch.</p>
-    <div class="btns">
-      <a class="btn primary" href="https://github.com/dy2097441-coder/Project-iceberg-OS-group">View the repo on GitHub</a>
-      <a class="btn" href="https://github.com/dy2097441-coder/Project-iceberg-OS-group/releases">Download the ISO</a>
-      <a class="btn" href="https://dy2097441-coder.github.io/ice-store/">Ice Store</a>
-      <a class="btn" href="https://discord.gg/M9C3223VEU">Join our Discord</a>
+  <div class="topbar"><header class="wrap">
+    <a class="brand" href="#"><img src="assets/yo.png" alt="">Project Iceberg OS</a>
+    <button class="menu" aria-expanded="false" aria-controls="nav">Menu ☰</button>
+    <nav id="nav" aria-label="Main navigation">
+      <a href="#features">Features</a><a href="#screens">Screenshots</a><a href="#requirements">Requirements</a><a href="#start">Get started</a><a href="#community">Community</a>
+    </nav>
+  </header></div>
+  <main>
+    <div class="wrap hero">
+      <div>
+        <div class="eyebrow"><i class="dot"></i> Early beta · version 0.11.4</div>
+        <h1>A little OS.<br><span>Big ideas.</span></h1>
+        <p class="lead">Meet Project Iceberg OS: a hobby operating system built from scratch, with a graphical desktop, its own web browser, an app store and a built-in update system.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/dy2097441-coder/Project-iceberg-OS-group/releases">↓ Download the ISO</a>
+          <a class="btn" href="https://github.com/dy2097441-coder/Project-iceberg-OS-group">Explore the source ↗</a>
+          <a class="btn" href="https://dy2097441-coder.github.io/ice-store/">Open Ice Store ↗</a>
+        </div>
+        <p class="version">Built from scratch · Tested in VirtualBox · x86 / BIOS</p>
+      </div>
+      <div class="preview"><img src="assets/desktop.png" alt="Project Iceberg OS desktop showing its app icons and taskbar"><span class="preview-label">PROJECT ICEBERG N · GUI BETA</span></div>
     </div>
-    <span class="badge">Early beta · version 0.11.4 · tested in VirtualBox</span>
-  </div>
 
-  <section id="features">
-    <h2>What's in it</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Desktop and apps</h3>
-        <ul>
-          <li>Windows, desktop icons and a Start menu</li>
-          <li>Files, Terminal, Notepad, Settings, About and To-Do</li>
-          <li>Notepad Save As: pick a name, <code>.txt</code> or <code>.html</code>, and a folder</li>
-          <li>Copy, cut and paste</li>
-          <li>Startup sound</li>
-        </ul>
+    <section id="features"><div class="wrap">
+      <div class="section-head"><div class="kicker">Inside Iceberg</div><h2>Everything you need to explore.</h2><p>A compact operating system with a desktop experience, useful built-in tools and networking features.</p></div>
+      <div class="features">
+        <article class="card"><div class="icon">🖥️</div><h3>Desktop & apps</h3><p>Windows, desktop icons and a Start menu, with Files, Terminal, Notepad, Settings, About and To-Do. Includes copy, cut, paste and startup sound.</p></article>
+        <article class="card"><div class="icon">🌐</div><h3>Built-in browser</h3><p>Loads real websites over direct HTTPS, tries HTTPS before HTTP for typed names, and can preview your own saved HTML pages.</p></article>
+        <article class="card"><div class="icon">🔒</div><h3>Networking & security</h3><p>Its own TCP engine with ARP replies, a TLS 1.3 client written from scratch, and certificate checking with Mozilla root certificates.</p></article>
+        <article class="card"><div class="icon">💾</div><h3>Install or try live</h3><p>Set up Iceberg on a disk and keep Home files between boots, or try it without installing.</p></article>
+        <article class="card"><div class="icon">🧊</div><h3>Ice Store</h3><p>A collection of free apps made for Iceberg OS. Download small .app files into Home/Downloads and open them from Files. Includes Calculator, Colors and Test apps.</p><p style="margin-top:12px"><a href="https://dy2097441-coder.github.io/ice-store/">Browse the Ice Store →</a></p></article>
+        <article class="card"><div class="icon">↻</div><h3>Built-in updates</h3><p>The Updates app checks the update site, downloads .upt files and asks you to restart when an update is ready.</p><p style="margin-top:12px"><a href="https://dy2097441-coder.github.io/ice-updates/">Visit update site →</a></p></article>
       </div>
-      <div class="card">
-        <h3>Web browser</h3>
-        <ul>
-          <li>Loads real websites</li>
-          <li>Direct HTTPS, no proxy needed</li>
-          <li>Typed names try <code>https://</code> first, then <code>http://</code></li>
-          <li>Preview your own saved <code>.html</code> pages</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Networking and security</h3>
-        <ul>
-          <li>Own TCP engine with ARP replies</li>
-          <li>TLS 1.3 client written from scratch</li>
-          <li>Certificate checking with a trust store of Mozilla root certificates</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Install to disk</h3>
-        <ul>
-          <li>"Set Up This Computer" copies Iceberg to a disk</li>
-          <li>Boots without the ISO afterwards</li>
-          <li>Your Home files are kept on the disk</li>
-          <li>Or choose "Try It Without Installing"</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Ice Store</h3>
-        <p>A website of free apps made only for Iceberg OS. Apps are small <code>.app</code> files you download into Home/Downloads and open from Files. There is a Calculator, a Colors demo and a Test app, and you can <a href="https://dy2097441-coder.github.io/ice-store/">write your own</a>.</p>
-      </div>
-      <div class="card">
-        <h3>Updates</h3>
-        <p>The Updates icon checks the <a href="https://dy2097441-coder.github.io/ice-updates/">update site</a>, downloads <code>.upt</code> files and asks you to restart. It says "your PC is up to date" when there's nothing new.</p>
-      </div>
-    </div>
-  </section>
+    </div></section>
 
-  <section id="screens">
-    <h2>Screenshots</h2>
-    <div class="grid">
-      <figure><img src="installer.png" alt="Setup screen with Set Up This Computer and Try It Without Installing"><figcaption>First screen: set up or try it</figcaption></figure>
-      <figure><img src="account.png" alt="Create your account screen"><figcaption>Create your account</figcaption></figure>
-      <figure><img src="desktop.png" alt="Iceberg desktop with Files, Terminal, Notepad, Browser, Ice Store, Updates and To-Do icons"><figcaption>The desktop</figcaption></figure>
-      <figure><img src="ice-store.png" alt="Ice Store open in the Iceberg browser showing the Calculator app"><figcaption>Ice Store in the built-in browser</figcaption></figure>
-    </div>
-  </section>
-
-  <section id="requirements">
-    <h2>Minimum system requirements</h2>
-    <div class="scroll">
-    <table>
-      <tr><th>Computer</th><td>x86 PC (or virtual machine), booting in BIOS or legacy/CSM mode. UEFI-only boot is not supported.</td></tr>
-      <tr><th>Memory</th><td>64 MB RAM</td></tr>
-      <tr><th>Graphics</th><td>VESA VBE 2.0</td></tr>
-      <tr><th>Input</th><td>Keyboard and a PS/2 pointer (mouse)</td></tr>
-      <tr><th>Boot media</th><td>CD/DVD drive or virtual optical drive for the ISO (about 350 KB)</td></tr>
-      <tr><th>Disk (to install)</th><td>At least 64 MB, IDE or SATA (AHCI). Not needed for "Try It Without Installing".</td></tr>
-      <tr><th>Network (optional)</th><td>Realtek RTL8139 or AMD PCnet network card, which is what VirtualBox provides</td></tr>
-      <tr><th>Sound (optional)</th><td>Intel ICH AC'97 audio controller. Intel HD Audio is not supported yet.</td></tr>
-    </table>
-    </div>
-    <p class="note">Iceberg has been tested in VirtualBox. It has not been tried on real hardware yet, so treat real PCs as experimental.</p>
-  </section>
-
-  <section id="start">
-    <h2>Get started in VirtualBox</h2>
-    <ol class="steps">
-      <li>Download the ISO from the <a href="https://github.com/dy2097441-coder/Project-iceberg-OS-group/releases">releases page</a>.</li>
-      <li>Create a new VM with 64 MB of RAM or more, and add a hard disk of at least 64 MB (IDE or SATA).</li>
-      <li>Under <strong>Settings &gt; Audio</strong>, set the audio controller to <strong>ICH AC97</strong> if you want the startup sound.</li>
-      <li>Put the ISO in the optical drive and start the VM.</li>
-      <li>Choose <strong>Set Up This Computer</strong> to install, or <strong>Try It Without Installing</strong>.</li>
-      <li>After installing, remove the ISO or put the hard disk first in the boot order.</li>
-    </ol>
-    <p class="note">The full guide is <code>INSTALL.md</code> in the <a href="https://github.com/dy2097441-coder/Project-iceberg-OS-group">repo</a>.</p>
-  </section>
-
-  <section id="community">
-    <h2>Community</h2>
-    <div class="card">
-      <p>Join the public Project Iceberg OS Discord to report bugs, share screenshots, post your own Ice Store apps and hear about new updates first. When you report a bug, please include your VirtualBox settings and what the Terminal prints for <code>disk</code>, <code>sound</code> or <code>net</code>.</p>
-      <p style="margin-top:14px"><a class="btn primary" href="https://discord.gg/M9C3223VEU">Join the Discord server</a></p>
-    </div>
-  </section>
-
-  <section id="credits">
-    <h2>Credits</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Project</h3>
-        <p>Project Iceberg OS is made by <a href="https://github.com/dy2097441-coder">dy2097441-coder</a> and the <a href="https://github.com/dy2097441-coder/Project-iceberg-OS-group">Project Iceberg OS group</a>.</p>
+    <section id="screens"><div class="wrap">
+      <div class="section-head"><div class="kicker">Take a look</div><h2>A glimpse of the Iceberg experience.</h2><p>Click any screenshot to view it larger.</p></div>
+      <div class="screens">
+        <figure class="shot"><img src="assets/installer.png" alt="Iceberg first screen with setup and try without installing options"><figcaption>01 / Start here — install or try Iceberg</figcaption></figure>
+        <figure class="shot"><img src="assets/account.png" alt="Create your account screen"><figcaption>02 / Create your account</figcaption></figure>
+        <figure class="shot"><img src="assets/desktop.png" alt="Iceberg OS desktop"><figcaption>03 / The desktop</figcaption></figure>
+        <figure class="shot"><img src="assets/ice-store.png" alt="Ice Store open in the Iceberg browser"><figcaption>04 / Ice Store in the built-in browser</figcaption></figure>
       </div>
-      <div class="card">
-        <h3>Startup sound</h3>
-        <p><em>Glitch019 / Computer Startup</em> by <strong>Zeraora</strong>, <a href="https://freesound.org/s/572773/">freesound.org/s/572773</a>. Licensed CC0.</p>
+    </div></section>
+
+    <section id="requirements"><div class="wrap">
+      <div class="section-head"><div class="kicker">Before you install</div><h2>Minimum system requirements.</h2><p>Iceberg is designed to run on modest x86 hardware or a virtual machine.</p></div>
+      <div class="specs">
+        <div class="spec"><strong>Computer</strong><span>x86 PC or VM, booting in BIOS or legacy/CSM mode. UEFI-only boot is not supported.</span></div>
+        <div class="spec"><strong>Memory</strong><span>64 MB RAM</span></div>
+        <div class="spec"><strong>Graphics</strong><span>VESA VBE 2.0</span></div>
+        <div class="spec"><strong>Input</strong><span>Keyboard and PS/2 pointer (mouse)</span></div>
+        <div class="spec"><strong>Boot media</strong><span>CD/DVD drive or virtual optical drive for the ISO (about 350 KB)</span></div>
+        <div class="spec"><strong>Disk (for install)</strong><span>At least 64 MB, IDE or SATA (AHCI). Not needed for the live try-out.</span></div>
+        <div class="spec"><strong>Network (optional)</strong><span>Realtek RTL8139 or AMD PCnet network card (provided by VirtualBox)</span></div>
+        <div class="spec"><strong>Sound (optional)</strong><span>Intel ICH AC'97 audio controller. Intel HD Audio is not supported yet.</span></div>
       </div>
-      <div class="card">
-        <h3>Cryptography and certificates</h3>
-        <ul>
-          <li>X25519 follows <strong>TweetNaCl</strong> (Bernstein, Lange, Schwabe and others), public domain</li>
-          <li>Trusted root certificates come from the <strong>Mozilla CA certificate list</strong>, via the Python <code>certifi</code> package</li>
-          <li>Elliptic-curve constants are generated with OpenSSL</li>
-          <li>Tested against Python's <code>cryptography</code> library and OpenSSL</li>
-        </ul>
+      <p style="color:var(--muted);font-size:.9rem;margin-top:12px">Tested in VirtualBox. Real hardware has not yet been tested, so treat physical-PC use as experimental.</p>
+    </div></section>
+
+    <section id="start"><div class="wrap">
+      <div class="section-head"><div class="kicker">Get up and running</div><h2>Try Iceberg in VirtualBox.</h2><p>Follow these steps to boot the system in a virtual machine.</p></div>
+      <div class="steps">
+        <article class="step"><p>Download the ISO from the <a href="https://github.com/dy2097441-coder/Project-iceberg-OS-group/releases">GitHub releases page</a>.</p></article>
+        <article class="step"><p>Create a VM with at least 64 MB RAM and a 64 MB or larger IDE or SATA disk.</p></article>
+        <article class="step"><p>For startup sound, set Settings → Audio to the ICH AC97 controller.</p></article>
+        <article class="step"><p>Attach the ISO to the virtual optical drive and start the VM.</p></article>
+        <article class="step"><p>Choose <strong>Set Up This Computer</strong> to install, or <strong>Try It Without Installing</strong>.</p></article>
+        <article class="step"><p>After installation, remove the ISO or put the hard disk first in the boot order.</p></article>
       </div>
-    </div>
-  </section>
+      <p style="color:var(--muted);margin-top:18px">Need more detail? See <a href="https://github.com/dy2097441-coder/Project-iceberg-OS-group">INSTALL.md in the project repository</a>.</p>
+    </div></section>
 
-</main>
-
-<footer>
-  Project Iceberg OS · <a href="https://github.com/dy2097441-coder/Project-iceberg-OS-group">GitHub</a> · <a href="https://dy2097441-coder.github.io/ice-store/">Ice Store</a> · <a href="https://dy2097441-coder.github.io/ice-updates/">Updates</a> · <a href="https://discord.gg/M9C3223VEU">Discord</a>
-</footer>
-
+    <section id="community"><div class="wrap community">
+      <div><div class="kicker">Build with us</div><h2>Join the Iceberg community.</h2><p>Report bugs, share screenshots, publish your own Ice Store apps and hear about updates. When reporting a bug, include your VirtualBox settings and Terminal output for disk, sound or net.</p></div>
+      <a class="btn primary" href="https://discord.gg/M9C3223VEU">Join our Discord ↗</a>
+    </div></section>
+  </main>
+  <footer><div class="wrap foot"><span>© Project Iceberg OS · Made by dy2097441-coder and contributors.</span><div class="footlinks"><a href="https://github.com/dy2097441-coder/Project-iceberg-OS-group">GitHub</a><a href="https://dy2097441-coder.github.io/ice-store/">Ice Store</a><a href="https://dy2097441-coder.github.io/ice-updates/">Updates</a><a href="https://discord.gg/M9C3223VEU">Discord</a></div></div></footer>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Screenshot preview"><button class="close" aria-label="Close preview">×</button><img alt="" src=""></div>
+  <script>
+    const menu=document.querySelector('.menu'),nav=document.querySelector('#nav');
+    menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});
+    nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
+    const modal=document.querySelector('.modal'),modalImg=modal.querySelector('img');
+    document.querySelectorAll('.shot img').forEach(img=>img.addEventListener('click',()=>{modalImg.src=img.src;modalImg.alt=img.alt;modal.classList.add('open')}));
+    function closeModal(){modal.classList.remove('open');modalImg.src=''}
+    modal.querySelector('.close').addEventListener('click',closeModal);
+    modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+  </script>
 </body>
 </html>
